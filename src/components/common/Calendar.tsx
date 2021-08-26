@@ -6,10 +6,12 @@ const Calendar: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.wrap}>
-      <header></header>
-      <section>
+      <header>
 
-      </section>
+      </header>
+      <main>
+
+      </main>
       <footer>
 
       </footer>

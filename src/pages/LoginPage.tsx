@@ -4,12 +4,15 @@ import {
   useHistory
 } from "react-router-dom";
 import clsx from "clsx";
+import {
+  ROUTE
+} from "../constants/index";
 
 const LoginPage: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
   const login = () => {
-
+    history.push(ROUTE.CALENDER)
   }
 
   return (

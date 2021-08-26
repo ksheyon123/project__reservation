@@ -7,8 +7,12 @@ import {
 } from "react-jss";
 import { ThemeType } from "./styles/theme";
 import {
-  LoginPage
+  LoginPage,
+  CalendarPage,
 } from "./pages/index";
+import {
+  MainLayout
+} from "./components/common/index";
 import {
   ROUTE
 } from "./constants/index";
@@ -48,7 +52,9 @@ const Routes = () => {
     <div className="container">
       <Switch>
         <Route exact path={ROUTE.LOGIN} component={LoginPage} />
-        <Route exact path={ROUTE.CALENDER} component={LoginPage} />
+        <MainLayout >
+          <Route exact path={ROUTE.CALENDER} component={CalendarPage} />
+        </MainLayout>
       </Switch>
     </div>
 
