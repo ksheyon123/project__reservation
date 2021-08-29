@@ -1,6 +1,6 @@
 const ROUTE = {
   LOGIN: "/login",
-  CALENDER: "/calender"
+  CALENDER: "/calendar"
 }
 
 export {
