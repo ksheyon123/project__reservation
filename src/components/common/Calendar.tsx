@@ -5,22 +5,14 @@ import { createUseStyles } from "react-jss";
 const Calendar: React.FC = () => {
   const classes = useStyles();
   return (
-    <div className={classes.wrap}>
-      <header>
+    <div className={classes.calendar}>
 
-      </header>
-      <main>
-
-      </main>
-      <footer>
-
-      </footer>
     </div>
   )
 }
 
 const useStyles = createUseStyles(() => ({
-  wrap: {
+  calendar: {
 
   }
 }))
