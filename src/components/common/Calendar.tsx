@@ -1,52 +1,84 @@
 import React, { useEffect } from "react";
 import { createUseStyles } from "react-jss";
 // import clsx from "clsx";
+import {
+  getDayOfStartWeekOnMonth,
+  getDaysOfMonth,
+  getWeekOfMonth
+} from "../../utils/index";
 
 const Calendar: React.FC = () => {
   const classes = useStyles();
-
-
+  const dayOfWeek: number = getDayOfStartWeekOnMonth();
+  const daysOfMonth: number = getDaysOfMonth();
+  const weeks = getWeekOfMonth();
+  let daysOfMonthArr = new Array();
 
   useEffect(() => {
-    let row: number = 5;
-    let column: number = 7;
-    // Calculate the days of month;
-    // This is not perfect
-    const twoDimensionArr = new Array();
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth() + 1;
-    let day: number = 30;
-    if (year % 4 === 0 && year % 100 !== 0 && year % 400 === 0) {
-      if (month === 2) {
-        day = 29;
-      }
-      if (month > 8 && month % 2 === 1) {
-        day = 31;
-      }
-      if (month <= 8 && month % 2 === 0) {
-        day = 31;
-      }
-    }
+    console.log("dayOfWeek", dayOfWeek)
+    // How to Calculate number of rows in a month;
+    let firstRow = 7 - dayOfWeek;
+    console.log("firstRow", firstRow)
+    let left = (daysOfMonth - firstRow) % 7;
+    let totalRow = left + 1;
+    console.log("totalRow", totalRow)
 
-    const startWeek: number = 0;
-    let date: number = 0;
+    let date: number = 1;
+    for (let i = 0; i < daysOfMonth; i++) {
+      const rowArr = [];
 
-    for (let i = 0; i < row; i++) {
-      if (row === i) {
-        return;
+
+      if (i >= dayOfWeek) {
+        rowArr.push(date)
       }
-      for (let j = 0; j < 7; j++) {
-        twoDimensionArr.push(date);
-        date++;
+      if (i < dayOfWeek) {
+        rowArr.push("-")
       }
+
+      date++;
     }
-    console.log(twoDimensionArr);
   }, []);
+
+  const ComponentJSX = () => {
+    return
+  }
 
   return (
     <div className={classes.calendar}>
       <div>
-
+        {
+          weeks
+            .filter((w) => !!w.length)
+            .map((w, idx) => {
+              if (idx === 0 && w.length !== 7) {
+                const left = 7 - w.length;
+                for (let i = 0; i < left; i++) {
+                  w.unshift(null)
+                }
+              }
+              {
+                return (
+                  <div style={{
+                    display: "flex"
+                  }}>
+                    {
+                      w.map((date) => {
+                        return (
+                          <div style={{
+                            width: 40,
+                            height: 40,
+                            border: "1px solid #EBEBEB"
+                          }}>
+                            {date}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
+            })
+        }
       </div>
     </div>
   )
