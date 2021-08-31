@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { createElement, useEffect, useRef, useState } from "react";
 import { createUseStyles } from "react-jss";
 // import clsx from "clsx";
 
@@ -6,7 +6,7 @@ const ReservationOfWeek: React.FC = () => {
   const classes = useStyles();
   const [timeArr, setTimeArr] = useState<string[]>([]);
   const divRef = useRef<HTMLDivElement>(null);
-
+  const [aaa, setAAA] = useState<number>(0);
   useEffect(() => {
     let newArr = new Array();
     for (let i = 0; i < 24; i++) {
@@ -17,9 +17,18 @@ const ReservationOfWeek: React.FC = () => {
   }, []);
 
   const handleScheduler = (e: any) => {
-    console.log(e);
-    console.log(divRef.current?.offsetWidth);
-    console.log(divRef.current?.offsetHeight);
+    //311 by 188
+    if (divRef.current?.getBoundingClientRect()) {
+      const yPosition = Math.floor((e.clientY - divRef.current?.getBoundingClientRect().top) / 24);
+      console.log(yPosition * 24 + 188)
+      setAAA(yPosition * 24);
+      const doa = document.getElementById("a");
+      const childComp = document.createElement("div");
+      childComp.innerHTML = "a";
+      childComp.className = "reserve"
+      childComp.setAttribute("style", "top : " + yPosition * 24 + "px; position : absolute");
+      doa?.appendChild(childComp)
+    }
   }
 
   return (
@@ -36,9 +45,25 @@ const ReservationOfWeek: React.FC = () => {
             })
           }
         </div>
-        <div className={classes.reserve__gap} />
+        <div className={classes.reserve__gap}>
+          {
+            timeArr.map((_) => {
+              return (
+                <div className={classes.line}>
+                </div>
+              )
+            })
+          }
+        </div>
         <div ref={divRef} className={classes.reserve__grid} onClick={(e) => handleScheduler(e)}>
-          <div></div>
+          <div id="a">
+            {/* <div style={{
+
+              top: aaa
+            }}>
+              a
+            </div> */}
+          </div>
           <div></div>
           <div></div>
           <div></div>
@@ -46,6 +71,9 @@ const ReservationOfWeek: React.FC = () => {
           <div></div>
           <div></div>
         </div>
+      </div>
+      <div>
+
       </div>
     </div>
   )
@@ -67,7 +95,7 @@ const useStyles = createUseStyles(() => ({
       height: 48,
       "& > div": {
         position: "absolute",
-        top: "-12px",
+        top: "-14px",
         right: 0,
         fontSize: 8,
       }
@@ -78,14 +106,35 @@ const useStyles = createUseStyles(() => ({
     minWidth: 10,
     borderRight: "1px solid #EBEBEB",
   },
+  line: {
+    height: 48,
+    boxSizing: "border-box",
+    "&:after": {
+      content: "''",
+      position: "absolute",
+      width: "100%",
+      borderBottom: "1px solid #EBEBEB"
+    }
+  },
   reserve__grid: {
     display: "grid",
     width: "calc(100% - 48px)",
     minWidth: "1000px",
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
     " & > div": {
+      position: "relative",
       borderRight: "1px solid #EBEBEB"
     }
+  },
+  "reserve": {
+    position: "absolute",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: "80%",
+    backgroundColor: "skyblue",
+    borderRadius: 6,
+    margin: 2,
   }
 }))
 

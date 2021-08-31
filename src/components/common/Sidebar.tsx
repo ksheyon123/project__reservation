@@ -1,13 +1,14 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import { Calendar } from "./Calendar";
+import { Button } from "./Button";
 // import clsx from "clsx";
 
 const Sidebar: React.FC = () => {
   const classes = useStyles();
   return (
     <aside className={classes.sidebar}>
-
+      <Button />
       <Calendar />
     </aside>
   )
