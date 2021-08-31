@@ -1,10 +1,17 @@
+import { Button } from "./Button";
 import { MainLayout } from "./MainLayout";
 import { Calendar } from "./Calendar";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
+import { DaysOfWeek } from "./DaysOfWeek";
+import { ReservationOfWeek } from "./ReservationOfWeek";
 
 export {
+  Button,
   MainLayout,
   Calendar,
-  Header
+  Header,
+  Sidebar,
+  DaysOfWeek,
+  ReservationOfWeek
 }
