@@ -3,7 +3,7 @@ import {
 } from 'recoil';
 import { LoginParams } from "./types";
 const loginStateParams = atom<LoginParams>({
-  key: "loginStateProps",
+  key: `loginPage__loginStateParams`,
   default: {
     userId: "",
     password: ""

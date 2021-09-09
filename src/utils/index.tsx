@@ -55,14 +55,24 @@ export const getDaysOfMonth = () => {
   }
 }
 
-export const getCurrentWeek = () => {
-  var currentDate = new Date();
+export const getWeek = (timestamp: number) => {
+  var currentDate = new Date(timestamp);
   const weeks = new Array();
   for (let i = 0; i < 7; i++) {
     const day = new Date(
       currentDate.setDate(currentDate.getDate() - currentDate.getDay() + i)
     ).getDate();
-    weeks.push(day);
+    const month = new Date(
+      currentDate.setDate(currentDate.getDate() - currentDate.getDay() + i)
+    ).getMonth();
+    const year = new Date(
+      currentDate.setDate(currentDate.getDate() - currentDate.getDay() + i)
+    ).getFullYear();
+    weeks.push({
+      year,
+      month,
+      day,
+    });
   }
   return weeks;
 }

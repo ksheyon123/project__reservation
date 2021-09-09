@@ -24,7 +24,9 @@ const useStyles = createUseStyles(() => ({
     height: "calc(100% - 6rem)",
     boxShadow: "0 5px 5px 0 #EBEBEB",
     padding: 10,
-    boxSizing: "border-box"
+    boxSizing: "border-box",
+    backgroundColor: "#FFF",
+    zIndex: 9998,
   }
 }))
 

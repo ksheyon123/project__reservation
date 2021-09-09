@@ -18,7 +18,9 @@ const useStyles = createUseStyles(() => ({
     left: 0,
     width: "100%",
     height: "6rem",
-    boxShadow: "0 0 10px 0 #EBEBEB"
+    boxShadow: "0 0 10px 0 #EBEBEB",
+    backgroundColor: "#FFF",
+    zIndex: 9999,
   }
 }))
 
