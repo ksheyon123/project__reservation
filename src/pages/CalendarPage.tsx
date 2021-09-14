@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 // import clsx from "clsx";
 import {
   DaysOfWeek,
-  ReservationOfWeek
+  Schedule
 } from "../components/common/index";
 
 const CalendarPage: React.FC = () => {
@@ -11,7 +11,7 @@ const CalendarPage: React.FC = () => {
   return (
     <div className={classes.wrap}>
       <DaysOfWeek />
-      <ReservationOfWeek />
+      <Schedule />
     </div>
   )
 }

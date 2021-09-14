@@ -7,8 +7,8 @@ import {
 } from "recoil";
 import {
   weekStateParams,
-  // daysOfWeekStateParams,
-  reservationStateParams
+  reservationStateParams,
+  daysOfWeekStateParams
 } from "../../states/CalendarState/atom";
 import {
   reservationStateProps
@@ -16,16 +16,20 @@ import {
 import {
   DAILY_SCHEDULE
 } from "../../constants/index";
+import theme from "../../styles/theme";
+import { ModalContext } from "../../contexts/ModalContext";
 
 const Column: React.FC = () => {
   const classes = useStyles();
   const divRef = useRef<HTMLDivElement>(null);
   const [scheduleList, setSceduleList] = useRecoilState(reservationStateParams);
+  const [daysOfWeek, setDaysOfWeek] = useRecoilState(daysOfWeekStateParams);
+
   const weekState = useRecoilValue(weekStateParams);
-  console.log(weekState)
   const [startPosition, setStartPosition] = useState<number>(0);
   const [isMounted, setisMounted] = useState<boolean>(false);
-  const timestamp = new Date("2021/09/08 22:10").valueOf();
+  const { handleModal } = React.useContext(ModalContext);
+
   const requestResevationList = () => {
     // 주간 데이터 모두 호출
     // response
@@ -50,37 +54,54 @@ const Column: React.FC = () => {
   const handleScheduler = (e: any) => {
     //311 by 188
     if (divRef.current?.getBoundingClientRect()) {
-      console.log("right", divRef.current?.getBoundingClientRect().right)
-      console.log("left", divRef.current?.getBoundingClientRect().left)
-
       const yPosition = Math.floor((e.clientY - divRef.current?.getBoundingClientRect().top) / 24);
-      const xPosition = Math.floor((divRef.current?.getBoundingClientRect().right - e.clientX) / 7)
-      console.log(yPosition);
-      console.log(xPosition);
+      const xPosition = Math.floor(((e.clientX - divRef.current?.getBoundingClientRect().left) * 7) / ((divRef.current?.getBoundingClientRect().right - divRef.current?.getBoundingClientRect().left)));
+      const { year, month, day } = daysOfWeek[xPosition];
+      const half = yPosition % 2 === 0 ? "00" : "31";
+      const hour = Math.floor(yPosition / 2);
+      console.log(new Date(year + "/" + month + "/" + day + " " + hour + ":" + half))
+      setSceduleList([
+        ...scheduleList,
+        {
+          timestamp: new Date(year + "/" + month + "/" + day + " " + hour + ":" + half).valueOf(),
+          title: "First2 Text",
+          content: "Content",
+          color: "#EBEBEB"
+        },
+      ])
     }
   }
+
+  console.log(scheduleList)
   return (
     <div ref={divRef} className={classes.reserve__grid} onClick={(e) => handleScheduler(e)}>
-
       {
-        weekState.map((singleWeek: string, idx: number) => {
+        daysOfWeek.map((singleWeek: any) => {
           return (
-            <div id={singleWeek}>
+            <div id={singleWeek.day}>
               {
                 scheduleList.map((comp: any) => {
-                  const { timestamp, title, content } = comp;
+                  const { day } = singleWeek;
+                  const { timestamp, title, color } = comp;
+                  const date = new Date(timestamp).getDate();
                   const hours = new Date(timestamp).getHours();
                   const minutes = new Date(timestamp).getMinutes();
-                  const week = new Date(timestamp).getDay();
-                  if (idx === week) {
+                  if (day === date) {
                     const position = (hours + (minutes > 30 ? 0.5 : 0)) * startPosition / 24;
-
                     return (
                       <div
                         onClick={() => handleSchedule(comp)}
                         style={{
                           position: "absolute",
-                          top: position
+                          top: position,
+                          backgroundColor: color,
+                          color: theme.mono1,
+                          height: 20,
+                          width: "95%",
+                          fontSize: 12,
+                          borderRadius: 3,
+                          paddingLeft: 10,
+                          boxSizing: "border-box"
                         }}
                       >
                         {title}
@@ -90,7 +111,6 @@ const Column: React.FC = () => {
                 })
               }
             </div>
-
           )
         })
       }
@@ -99,14 +119,9 @@ const Column: React.FC = () => {
   )
 }
 
-const ReservationOfWeek: React.FC = () => {
+const Schedule: React.FC = () => {
   const classes = useStyles();
   const [timeArr, setTimeArr] = useState<string[]>([]);
-  const divRef = useRef<HTMLDivElement>(null);
-  // const [refVisible, setRefVisible] = useState(false)
-  // const [startPosition, setStartPosition] = useState<number>(0);
-
-  // console.log("startPosition", startPosition)
 
   useEffect(() => {
     let newArr = new Array();
@@ -211,4 +226,4 @@ const useStyles = createUseStyles(() => ({
   }
 }))
 
-export { ReservationOfWeek }
+export { Schedule }

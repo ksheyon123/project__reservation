@@ -1,8 +1,12 @@
 const theme = {
   font: "'Noto Sans KR', sans-serif",
 
+  mono0: "rgb(34, 34, 34)",
   mono1: "#FFF",
   mono6: "#000",
+  monoBg: "rgb(246, 246, 246)",
+  primarySol: "rgb(77, 135, 255)",
+
 
   tomato: "#c3291c",
   flamingo: "#d88177",

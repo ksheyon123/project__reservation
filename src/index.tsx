@@ -9,13 +9,16 @@ import {
 } from "react-jss";
 import Theme from "./styles/theme";
 import { RecoilRoot } from "recoil";
+import { ModalProvider } from "./contexts/ModalContext";
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
       <RecoilRoot>
-        <Router>
-          <Routes />
-        </Router>
+        <ModalProvider>
+          <Router>
+            <Routes />
+          </Router>
+        </ModalProvider>
       </RecoilRoot>
     </ThemeProvider>
   </React.StrictMode>,

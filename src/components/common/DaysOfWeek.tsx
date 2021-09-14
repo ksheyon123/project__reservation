@@ -21,9 +21,7 @@ import {
 const DaysOfWeek: React.FC = () => {
   const classes = useStyles();
   const weekState = useRecoilValue(weekStateParams);
-  console.log("weekState", weekState)
   const [daysOfWeek, setDaysOfWeek] = useRecoilState(daysOfWeekStateParams);
-  console.log("daysOfWeek", daysOfWeek)
 
   const timestamp = new Date().valueOf();
   useEffect(() => {

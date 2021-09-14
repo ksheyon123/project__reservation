@@ -10,51 +10,61 @@ const DAILY_SCHEDULE = [
     timestamp: new Date("2021/09/08 15:37").valueOf(),
     title: "First Text",
     content: "Content",
+    color: theme.sage
   },
   {
     timestamp: new Date("2021/09/08 15:30").valueOf(),
     title: "First2 Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/08 22:22").valueOf(),
     title: "Second Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/08 17:40").valueOf(),
     title: "Third Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/09 07:59").valueOf(),
     title: "Fourth Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/09 13:45").valueOf(),
     title: "Fourth Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/09 21:11").valueOf(),
     title: "Fourth Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/09 12:55").valueOf(),
     title: "Fourth Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
     timestamp: new Date("2021/09/11 19:00").valueOf(),
     title: "Fourth Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
   {
-    timestamp: new Date("2021/09/09 16:32").valueOf(),
+    timestamp: new Date("2021/09/14 16:32").valueOf(),
     title: "Fourth Text",
-    content: "Content"
+    content: "Content",
+    color: theme.lavender
   },
 ]
 

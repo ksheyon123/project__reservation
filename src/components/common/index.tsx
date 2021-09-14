@@ -4,7 +4,7 @@ import { Calendar } from "./Calendar";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 import { DaysOfWeek } from "./DaysOfWeek";
-import { ReservationOfWeek } from "./ReservationOfWeek";
+import { Schedule } from "./Schedule";
 
 export {
   Button,
@@ -13,5 +13,5 @@ export {
   Header,
   Sidebar,
   DaysOfWeek,
-  ReservationOfWeek
+  Schedule
 }
