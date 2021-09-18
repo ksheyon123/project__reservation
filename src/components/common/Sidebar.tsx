@@ -2,13 +2,20 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 import { Calendar } from "./Calendar";
 import { Button } from "./Button";
-// import clsx from "clsx";
+import clsx from "clsx";
+import {
+  useRecoilValue,
+} from "recoil";
+import {
+  LNBStateParams
+} from "../../states/NavState/atom";
 
 const Sidebar: React.FC = () => {
   const classes = useStyles();
+  const isShowLNB = useRecoilValue(LNBStateParams);
+
   return (
-    <aside className={classes.sidebar}>
-      <Button />
+    <aside className={clsx(classes.sidebar, isShowLNB && "active")}>
       <Calendar />
     </aside>
   )
@@ -16,7 +23,7 @@ const Sidebar: React.FC = () => {
 
 const useStyles = createUseStyles(() => ({
   sidebar: {
-    position: "fixed",
+    position: "absolute",
     top: 0,
     left: 0,
     marginTop: "6rem",
@@ -27,6 +34,11 @@ const useStyles = createUseStyles(() => ({
     boxSizing: "border-box",
     backgroundColor: "#FFF",
     zIndex: 9998,
+    transform: "translateX(0rem)",
+    transition: "transform ease 0.3s",
+    "&.active": {
+      transform: "translateX(-25.2rem)"
+    }
   }
 }))
 

@@ -5,6 +5,7 @@ import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 import { DaysOfWeek } from "./DaysOfWeek";
 import { Schedule } from "./Schedule";
+import { Input } from "./Input";
 
 export {
   Button,
@@ -13,5 +14,6 @@ export {
   Header,
   Sidebar,
   DaysOfWeek,
-  Schedule
+  Schedule,
+  Input
 }
