@@ -35,6 +35,7 @@ const useStyles = createUseStyles(() => ({
     width: "calc(100% - 25.2rem)",
     height: "calc(100% - 6rem)",
     transition: "margin ease 0.3s",
+    overflow: "scroll",
     "&.active": {
       marginLeft: "0",
       width: "100%",

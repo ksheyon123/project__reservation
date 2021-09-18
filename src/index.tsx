@@ -10,14 +10,18 @@ import {
 import Theme from "./styles/theme";
 import { RecoilRoot } from "recoil";
 import { ModalProvider } from "./contexts/ModalContext";
+import { ScheduleInputProvider } from "./contexts/ScheduleInputContext";
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
       <RecoilRoot>
         <ModalProvider>
-          <Router>
-            <Routes />
-          </Router>
+          <ScheduleInputProvider>
+            <Router>
+              <Routes />
+            </Router>
+          </ScheduleInputProvider>
         </ModalProvider>
       </RecoilRoot>
     </ThemeProvider>

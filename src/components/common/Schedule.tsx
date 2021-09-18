@@ -18,6 +18,7 @@ import {
 } from "../../constants/index";
 import theme from "../../styles/theme";
 import { ModalContext } from "../../contexts/ModalContext";
+import { ScheduleInputContext } from "../../contexts/ScheduleInputContext";
 
 const Column: React.FC = () => {
   const classes = useStyles();
@@ -28,7 +29,7 @@ const Column: React.FC = () => {
   const weekState = useRecoilValue(weekStateParams);
   const [startPosition, setStartPosition] = useState<number>(0);
   const [isMounted, setisMounted] = useState<boolean>(false);
-  const { handleModal } = React.useContext(ModalContext);
+  const { toggleScheduleInput, setClickPosition } = React.useContext(ScheduleInputContext);
 
   const requestResevationList = () => {
     // 주간 데이터 모두 호출
@@ -52,27 +53,31 @@ const Column: React.FC = () => {
   }
 
   const handleScheduler = (e: any) => {
-    //311 by 188
-    if (divRef.current?.getBoundingClientRect()) {
-      const yPosition = Math.floor((e.clientY - divRef.current?.getBoundingClientRect().top) / 24);
-      const xPosition = Math.floor(((e.clientX - divRef.current?.getBoundingClientRect().left) * 7) / ((divRef.current?.getBoundingClientRect().right - divRef.current?.getBoundingClientRect().left)));
-      const { year, month, day } = daysOfWeek[xPosition];
-      const half = yPosition % 2 === 0 ? "00" : "31";
-      const hour = Math.floor(yPosition / 2);
-      console.log(new Date(year + "/" + month + "/" + day + " " + hour + ":" + half))
-      setSceduleList([
-        ...scheduleList,
-        {
-          timestamp: new Date(year + "/" + month + "/" + day + " " + hour + ":" + half).valueOf(),
-          title: "First2 Text",
-          content: "Content",
-          color: "#EBEBEB"
-        },
-      ])
-    }
+    console.log(e.pageX);
+    toggleScheduleInput(true)
+    setClickPosition({
+      x: e.pageX,
+      y: e.pageY
+    })
+    // if (divRef.current?.getBoundingClientRect()) {
+    //   const yPosition = Math.floor((e.clientY - divRef.current?.getBoundingClientRect().top) / 24);
+    //   const xPosition = Math.floor(((e.clientX - divRef.current?.getBoundingClientRect().left) * 7) / ((divRef.current?.getBoundingClientRect().right - divRef.current?.getBoundingClientRect().left)));
+    //   const { year, month, day } = daysOfWeek[xPosition];
+    //   const half = yPosition % 2 === 0 ? "00" : "31";
+    //   const hour = Math.floor(yPosition / 2);
+    //   console.log(new Date(year + "/" + month + "/" + day + " " + hour + ":" + half))
+    //   setSceduleList([
+    //     ...scheduleList,
+    //     {
+    //       timestamp: new Date(year + "/" + month + "/" + day + " " + hour + ":" + half).valueOf(),
+    //       title: "First2 Text",
+    //       content: "Content",
+    //       color: "#EBEBEB"
+    //     },
+    //   ])
+    // }
   }
 
-  console.log(scheduleList)
   return (
     <div ref={divRef} className={classes.reserve__grid} onClick={(e) => handleScheduler(e)}>
       {
