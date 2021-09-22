@@ -51,6 +51,8 @@ const theme = {
   softblue: "#4d87ff",
   deepblue: "#003ebe",
 
+  hBG: "#f1f3f4",
+
   light: 300,
   regular: 400,
   medium: 600,

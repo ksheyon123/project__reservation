@@ -53,29 +53,28 @@ const Column: React.FC = () => {
   }
 
   const handleScheduler = (e: any) => {
-    console.log(e.pageX);
     toggleScheduleInput(true)
     setClickPosition({
       x: e.pageX,
       y: e.pageY
     })
-    // if (divRef.current?.getBoundingClientRect()) {
-    //   const yPosition = Math.floor((e.clientY - divRef.current?.getBoundingClientRect().top) / 24);
-    //   const xPosition = Math.floor(((e.clientX - divRef.current?.getBoundingClientRect().left) * 7) / ((divRef.current?.getBoundingClientRect().right - divRef.current?.getBoundingClientRect().left)));
-    //   const { year, month, day } = daysOfWeek[xPosition];
-    //   const half = yPosition % 2 === 0 ? "00" : "31";
-    //   const hour = Math.floor(yPosition / 2);
-    //   console.log(new Date(year + "/" + month + "/" + day + " " + hour + ":" + half))
-    //   setSceduleList([
-    //     ...scheduleList,
-    //     {
-    //       timestamp: new Date(year + "/" + month + "/" + day + " " + hour + ":" + half).valueOf(),
-    //       title: "First2 Text",
-    //       content: "Content",
-    //       color: "#EBEBEB"
-    //     },
-    //   ])
-    // }
+    if (divRef.current?.getBoundingClientRect()) {
+      const yPosition = Math.floor((e.clientY - divRef.current?.getBoundingClientRect().top) / 24);
+      const xPosition = Math.floor(((e.clientX - divRef.current?.getBoundingClientRect().left) * 7) / ((divRef.current?.getBoundingClientRect().right - divRef.current?.getBoundingClientRect().left)));
+      const { year, month, day } = daysOfWeek[xPosition];
+      const half = yPosition % 2 === 0 ? "00" : "31";
+      const hour = Math.floor(yPosition / 2);
+      console.log(new Date(year + "/" + month + "/" + day + " " + hour + ":" + half))
+      setSceduleList([
+        ...scheduleList,
+        {
+          timestamp: new Date(year + "/" + month + "/" + day + " " + hour + ":" + half).valueOf(),
+          title: "First2 Text",
+          content: "Content",
+          color: "#EBEBEB"
+        },
+      ])
+    }
   }
 
   return (
