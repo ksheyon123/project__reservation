@@ -87,7 +87,7 @@ const DaysOfWeek: React.FC = () => {
                             {el.title}
                           </div>
                         )
-                      } else if (day >= start && day <= end) {
+                      } else if (day > start && day <= end) {
                         if (idx === 0) {
                           return (
                             <div

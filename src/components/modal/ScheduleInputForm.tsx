@@ -6,11 +6,18 @@ import { ScheduleInputContext } from "../../contexts/ScheduleInputContext";
 import { ThemeType } from "../../styles/theme";
 import clock_icon from "../../assets/clock_icon.png";
 import {
-  Input
+  useRecoilState
+} from "recoil";
+import {
+  Input,
+  ColorPicker
 } from "../common/index";
-
+import {
+  reservationStateParams
+} from "../../states/CalendarState/atom";
 const ScheduleInputForm: React.FC = () => {
   const classes = useStyles();
+  const [scheduleData, setScheduleData] = useRecoilState(reservationStateParams);
   const { isScheduleInputOpended, clickedPosition } = React.useContext(
     ScheduleInputContext
   );
@@ -19,36 +26,44 @@ const ScheduleInputForm: React.FC = () => {
     console.log(window.innerHeight);
   }, []);
 
+  const getColor = (el: any) => {
+    console.log(el)
+  }
+
   return ReactDOM.createPortal(
-    <div className={clsx(classes.modal, isScheduleInputOpended && "active")} style={{
-      left: clickedPosition.x,
-      top: clickedPosition.y
-    }}>
-      <div className={classes.header}>
+    <div className={classes.wrap}>
+      <div className={clsx(classes.modal, isScheduleInputOpended && "active")}>
+        <div className={classes.header} />
+        <div className={classes.content}>
+          <div style={{
+            marginLeft: "50px",
+            background: `url(${clock_icon}) center left 20px no-repeat`,
+            backgroundSize: "22px 22px"
 
-      </div>
-      <div className={classes.content}>
-        <div style={{
-          marginLeft: "50px",
-          background: `url(${clock_icon}) center left 20px no-repeat`,
-          backgroundSize: "22px 22px"
+          }}>
+            <Input text={""} type={"text"} placeholder={"Title"} />
+          </div>
+          <div style={{
+            marginLeft: "50px",
+            backgroundImage: `url(${clock_icon}) center left 10px no-repeat`,
 
-        }}>
-          <Input text={""} type={"text"} placeholder={"Title"} />
-        </div>
-        <div style={{
-          marginLeft: "50px",
-          backgroundImage: `url(${clock_icon}) center left 10px no-repeat`,
+          }}>
+            <Input text={""} type={"text"} placeholder={"Title"} />
+          </div>
+          <div style={{
+            marginLeft: "50px",
+            backgroundImage: `url(${clock_icon}) center left 10px no-repeat`,
 
-        }}>
-          <Input text={""} type={"text"} placeholder={"Title"} />
-        </div>
-        <div style={{
-          marginLeft: "50px",
-          backgroundImage: `url(${clock_icon}) center left 10px no-repeat`,
+          }}>
+            <Input text={""} type={"text"} placeholder={"Title"} />
+          </div>
+          <div style={{
+            marginLeft: "50px",
+            backgroundImage: `url(${clock_icon}) center left 10px no-repeat`,
 
-        }}>
-          <Input text={""} type={"text"} placeholder={"Title"} />
+          }}>
+            <ColorPicker type={"short"} onClick={getColor} />
+          </div>
         </div>
       </div>
     </div>,
@@ -57,10 +72,16 @@ const ScheduleInputForm: React.FC = () => {
 }
 
 const useStyles = createUseStyles((theme: ThemeType) => ({
+  wrap: {
+    display: "flex",
+    width: "100vw",
+    height: "100vh",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   modal: {
     display: "none",
     "&.active": {
-      position: "absolute",
       display: "block",
       width: "30vw",
       height: "60vh",
@@ -80,7 +101,6 @@ const useStyles = createUseStyles((theme: ThemeType) => ({
   content: {
     width: "100%",
     height: "calc(100% - 3.6rem)"
-
   }
 }))
 

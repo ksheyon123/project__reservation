@@ -7,7 +7,7 @@ import {
 } from "recoil";
 import {
   weekStateParams,
-  reservationStateParams,
+  reservationListStateParams,
   daysOfWeekStateParams
 } from "../../states/CalendarState/atom";
 import {
@@ -23,7 +23,7 @@ import { ScheduleInputContext } from "../../contexts/ScheduleInputContext";
 const Column: React.FC = () => {
   const classes = useStyles();
   const divRef = useRef<HTMLDivElement>(null);
-  const [scheduleList, setSceduleList] = useRecoilState(reservationStateParams);
+  const [scheduleList, setSceduleList] = useRecoilState(reservationListStateParams);
   const [daysOfWeek, setDaysOfWeek] = useRecoilState(daysOfWeekStateParams);
 
   const weekState = useRecoilValue(weekStateParams);

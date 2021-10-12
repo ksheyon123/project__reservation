@@ -16,14 +16,26 @@ const daysOfWeekStateParams = atom<daysOfWeekStateProps[]>({
   default: []
 });
 
-const reservationStateParams = atom<reservationStateProps[]>({
-  key: "calendarPage__reservationStateParams",
+const reservationListStateParams = atom<reservationStateProps[]>({
+  key: "calendarPage__reservationListStateParams",
   default: []
-})
+});
+
+const reservationStateParams = atom<reservationStateProps>({
+  key: "calendarPage__reservationStateParams",
+  default: {
+    timestamp: 0,
+    title: "",
+    content: "",
+    color: "",
+  }
+});
 
 export {
   weekStateParams,
   daysOfWeekStateParams,
-  reservationStateParams
+  reservationStateParams,
+  reservationListStateParams,
+
 }
 

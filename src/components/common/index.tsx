@@ -6,6 +6,7 @@ import { Sidebar } from "./Sidebar";
 import { DaysOfWeek } from "./DaysOfWeek";
 import { Schedule } from "./Schedule";
 import { Input } from "./Input";
+import { ColorPicker } from "./ColorPicker";
 
 export {
   Button,
@@ -15,5 +16,6 @@ export {
   Sidebar,
   DaysOfWeek,
   Schedule,
-  Input
+  Input,
+  ColorPicker
 }
