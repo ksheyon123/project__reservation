@@ -1,17 +1,24 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-// import clsx from "clsx";
 import {
   DaysOfWeek,
   Schedule
-} from "../components/common/index";
+} from "src/components/common/index";
+import { schedulePageContainer } from "src/containers/index";
 
 const CalendarPage: React.FC = () => {
   const classes = useStyles();
+
+  const { } = schedulePageContainer();
+
+  // Daily Screen
+  // Weekly Screen
+  // Monthly Screen
+  // Annually Screen
+
   return (
     <div className={classes.wrap}>
-      <DaysOfWeek />
-      <Schedule />
+
     </div>
   )
 }
