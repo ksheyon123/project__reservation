@@ -5,17 +5,17 @@ import {
 import {
   createUseStyles
 } from "react-jss";
-import { ThemeType } from "./styles/theme";
+import { ThemeType } from "src/styles/theme";
 import {
   LoginPage,
   CalendarPage,
-} from "./pages/index";
+} from "src/pages/index";
 import {
   MainLayout
-} from "./components/common/index";
+} from "src/components/common/index";
 import {
   ROUTE
-} from "./constants/index";
+} from "src/constants/index";
 
 const Routes = () => {
   const useStyles = createUseStyles((theme: ThemeType) => ({
@@ -62,7 +62,5 @@ const Routes = () => {
 
   )
 }
-
-
 
 export default Routes;

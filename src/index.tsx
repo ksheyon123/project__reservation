@@ -7,10 +7,10 @@ import {
 import {
   ThemeProvider
 } from "react-jss";
-import Theme from "./styles/theme";
+import Theme from "src/styles/theme";
 import { RecoilRoot } from "recoil";
-import { ModalProvider } from "./contexts/ModalContext";
-import { ScheduleInputProvider } from "./contexts/ScheduleInputContext";
+import { ModalProvider } from "src/contexts/ModalContext";
+import { ScheduleInputProvider } from "src/contexts/ScheduleInputContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,7 +28,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
